@@ -4,9 +4,9 @@ const app = express();
 const DataHandler = require('./dataHandler');
 const { getDefaultStatus, getNextStatus } = require('./status');
 const PORT = process.env.PORT || 3001;
-const REDIS_URL = process.env.REDIS_URL || '127.0.0.1:6379';
+const REDIS_URL = process.env.REDIS_URL || '6379';
 
-const redisClient = redis.createClient();
+const redisClient = redis.createClient(REDIS_URL);
 const dataHandler = new DataHandler(redisClient);
 
 dataHandler.getTodo().then((todo) => {
